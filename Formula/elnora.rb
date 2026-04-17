@@ -45,13 +45,12 @@ class Elnora < Formula
 
   def caveats
     <<~EOS
-      To get started, run:
+      To get started:
 
         elnora auth login
+        elnora setup          # Configure Claude Code, Cursor, etc.
 
       You'll need an API key from https://platform.elnora.ai
-
-      Documentation: https://github.com/Elnora-AI/elnora-cli
     EOS
   end
 
