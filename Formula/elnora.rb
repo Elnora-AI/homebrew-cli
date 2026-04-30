@@ -1,7 +1,7 @@
 class Elnora < Formula
   desc "AI-powered bioprotocol optimization CLI for researchers"
   homepage "https://elnora.ai"
-  version "v1.5.3"
+  version "v1.5.4"
   license "Apache-2.0"
 
   livecheck do
@@ -12,22 +12,22 @@ class Elnora < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/Elnora-AI/elnora-cli/releases/download/v#{version}/elnora-macos-arm64.tar.gz"
-      sha256 "7d845cf57ad7368e91f505e8e3d93f3b0c4bc7899aff14ec211c3069b9b8eeda"
+      sha256 "ea97dae9ab636abfc66cb93b18ca936d60a1361971ad6e4c760c4e6717db9b80"
     end
     if Hardware::CPU.intel?
       url "https://github.com/Elnora-AI/elnora-cli/releases/download/v#{version}/elnora-macos-x64.tar.gz"
-      sha256 "5c9028932dba18b55b5bfb0e736a07a1fc825c1ffceef871ed9fcfb02c270418"
+      sha256 "9f01a437e487e4328721865e35b604e1b3229c5517e371f4f505be37ae86145c"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://github.com/Elnora-AI/elnora-cli/releases/download/v#{version}/elnora-linux-arm64.tar.gz"
-      sha256 "35613c7e81649286f07a77d7812f6088120b012f8687cea60ad1503949ff84a2"
+      sha256 "e32918b4c027014431b8428cd8c36ddd0fcb6340c0d09f86b5218ad19a799139"
     end
     if Hardware::CPU.intel?
       url "https://github.com/Elnora-AI/elnora-cli/releases/download/v#{version}/elnora-linux-x64.tar.gz"
-      sha256 "986f9f172ae8a0da6711af2efc336751b8f3d3fecc09275e464c0415f12b0f17"
+      sha256 "8a0ab090789750b696854d32e51487bae6c18d61a9af35ca4bb9143043a68ac5"
     end
   end
 
