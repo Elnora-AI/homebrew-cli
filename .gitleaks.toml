@@ -1,0 +1,6 @@
+# gitleaks config for the Elnora CLI Homebrew tap.
+# Extend the built-in ruleset. No allowlist entries are needed: the tap holds
+# only formula definitions (release URLs and SHA256 checksums), none of which
+# are token-shaped secrets.
+[extend]
+useDefault = true
