@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  formula:
+    name: Validate formula
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: Homebrew/actions/setup-homebrew@master
+      - name: brew style
+        run: brew style Formula/*.rb
+      # setup-homebrew symlinks this checkout in as the elnora-ai/cli tap, so the
+      # formula is auditable by name (`brew audit <path>` is disabled). --online is
+      # dropped on purpose: it would fetch every release URL and the homepage on
+      # each run, which is rate-limit-prone on a tap that is machine-bumped on every
+      # CLI release. Checksums are pinned in the formula, and the strict offline
+      # audit still catches the failure that matters here: a leading-'v' version,
+      # which is what produces a broken download URL.
+      - name: brew audit --strict
+        run: brew audit --strict elnora-ai/cli/elnora

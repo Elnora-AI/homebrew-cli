@@ -1,12 +1,12 @@
 class Elnora < Formula
   desc "AI-powered bioprotocol optimization CLI for researchers"
   homepage "https://elnora.ai"
-  version "v2.3.0"
+  version "2.3.0"
   license "Apache-2.0"
 
   livecheck do
-    url "https://github.com/Elnora-AI/elnora-cli/releases/latest"
-    regex(%r{href=.*?/tag/v?(\d+(?:\.\d+)+)["' >]}i)
+    url :stable
+    strategy :github_latest
   end
 
   on_macos do
