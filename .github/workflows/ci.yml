@@ -23,17 +23,12 @@ jobs:
       - uses: Homebrew/actions/setup-homebrew@master
       - name: brew style
         run: brew style Formula/*.rb
-      # `brew audit` on a bare path is disabled, so put the checkout at Homebrew's
-      # tap path and audit by name. (`brew tap <name> <local-path>` errors with a
-      # remote mismatch; the checkout's origin already matches the GitHub remote.)
-      # --online is dropped on purpose: it would fetch every release URL and the
-      # homepage on each run, which is rate-limit-prone on a tap that is
-      # machine-bumped on every CLI release. Checksums are pinned in the formula,
-      # and the strict offline audit still catches the failure that matters here:
-      # a leading-'v' version, which is what produces a broken download URL.
+      # setup-homebrew symlinks this checkout in as the elnora-ai/cli tap, so the
+      # formula is auditable by name (`brew audit <path>` is disabled). --online is
+      # dropped on purpose: it would fetch every release URL and the homepage on
+      # each run, which is rate-limit-prone on a tap that is machine-bumped on every
+      # CLI release. Checksums are pinned in the formula, and the strict offline
+      # audit still catches the failure that matters here: a leading-'v' version,
+      # which is what produces a broken download URL.
       - name: brew audit --strict
-        run: |
-          tap="$(brew --repository)/Library/Taps/elnora-ai/homebrew-cli"
-          mkdir -p "$(dirname "$tap")"
-          cp -R "$GITHUB_WORKSPACE" "$tap"
-          brew audit --strict elnora-ai/cli/elnora
+        run: brew audit --strict elnora-ai/cli/elnora
