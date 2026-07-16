@@ -1,7 +1,7 @@
 class Elnora < Formula
   desc "AI-powered bioprotocol optimization CLI for researchers"
   homepage "https://elnora.ai"
-  version "v2.5.1"
+  version "2.5.1"
   license "Apache-2.0"
 
   livecheck do
